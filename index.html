@@ -1,85 +1,88 @@
+<!-- Chinese version -->
 <!DOCTYPE html>
 <html>
+  <head>
+    <title></title>
 
-<head>
-  <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      href="https://discoverthreejs.com/favicon.ico"
+      type="image/x-icon"
+    />
 
-  <link rel="icon" href="https://discoverthreejs.com/favicon.ico" type="image/x-icon">
+    <link href="./styles/main.css" rel="stylesheet" type="text/css" />
 
-  <link href="./styles/main.css" rel="stylesheet" type="text/css">
+    <script type="module" src="./src/main.js"></script>
 
-  <script type="module" src="./src/main.js"></script>
+    <style>
+      canvas {
+        width: 100%;
+        height: 100px;
+        display: block;
+      }
 
+      .annotation {
+        text-align: left;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        margin-left: 15px;
+        margin-bottom: 15px;
+        padding: 1em;
+        width: 29vw;
+        /* height: 50vh; */
+        color: #fff;
+        background: rgba(11, 65, 64);
+        border-radius: 0.5em;
+        font-size: 12px;
+        line-height: 1.2;
+        opacity: 0.8;
+        transition: 0.5s;
+      }
+      .div-organge-line {
+        width: 100px;
+        height: 3px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        background-color: #ef5323;
+        color: transparent;
+      }
+      .close::before {
+        content: "x";
+        position: absolute;
+        cursor: pointer;
+        /* bottom: 51vh; */
+        /* left: 29.5vw; */
+        left: 100%;
+        bottom: calc(100% + 0.5rem);
+        transform: translateX(-100%);
+        width: 30px;
+        height: 30px;
+        border: 2px solid #fff;
+        border-radius: 60%;
+        font-size: 18px;
+        line-height: 28px;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.8);
+      }
 
-  <style>
-    canvas {
-      width: 100%;
-      height: 100px;
-      display: block;
-    }
+      #number {
+        position: absolute;
+        z-index: -1;
+      }
+      .none {
+        display: none;
+      }
+      .video {
+        width: 120;
+        height: 240;
+      }
 
-    .annotation {
-      text-align: left;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      z-index: 1;
-      margin-left: 15px;
-      margin-bottom: 15px;
-      padding: 1em;
-      width: 29vw;
-      /* height: 50vh; */
-      color: #fff;
-      background: rgba(11, 65, 64);
-      border-radius: .5em;
-      font-size: 12px;
-      line-height: 1.2;
-      opacity: .8;
-      transition: .5s;
-    }
-    .div-organge-line {
-      width: 100px;
-      height: 3px;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      background-color: #ef5323;
-      color: transparent;
-    }
-    .close::before {
-      content: 'x';
-      position: absolute;
-      cursor: pointer;
-      /* bottom: 51vh; */
-      /* left: 29.5vw; */
-      left: 100%;
-      bottom: calc(100% + .5rem);
-      transform: translateX(-100%);
-      width: 30px;
-      height: 30px;
-      border: 2px solid #fff;
-      border-radius: 60%;
-      font-size: 18px;
-      line-height: 28px;
-      text-align: center;
-      background: rgba(0, 0, 0, 0.8);
-    }
-
-    #number {
-      position: absolute;
-      z-index: -1;
-    }
-    .none{
-      display: none;
-    }
-    .video{
-      width: 120;
-      height: 240;
-    }
-
-    @media (max-width: 767px) {
+      @media (max-width: 767px) {
         video {
           display: none;
         }
@@ -88,136 +91,229 @@
           width: 80%;
         }
       }
-  </style>
+    </style>
+  </head>
 
-</head>
+  <body>
+    <h1></h1>
 
-<body>
-  <h1></h1>
+    <div class="annotation" id="annotation" style="display: none">
+      <div
+        class="close"
+        id="close"
+        onclick="document.getElementById('annotation').style.display='none'"
+      ></div>
+      <!-- DECK -->
+      <div id="deck" style="display: none">
+        <video
+          type="video/mp4"
+          src="video/FLIGHT DECK.mp4"
+          class="video"
+          width="100%"
+          height="240"
+          autoplay
+          muted
+          loop
+        ></video>
+        <div class="div-organge-line"></div>
+        <p><strong>Flight Deck</strong></p>
+        <p id="annotation">
+          Designed for the D328eco™, the Companion™ integrated flight deck based
+          on the Garmin G5000® avionics suite allows superior situational
+          awareness, reduces pilot work and increases efficiency. This
+          revolutionary, brand-new flight deck also significantly reduces
+          maintenance costs and improves reliability.
+        </p>
+      </div>
 
-  <div class="annotation" id="annotation" style="display: none;">
-    <div class="close" id="close" onclick="document.getElementById('annotation').style.display='none'"></div>
-    <!-- DECK -->
-    <div id="deck" style="display: none;">
-      <video type ='video/mp4' src="video/FLIGHT DECK.mp4" class="video" width="100%" height="240" autoplay muted loop></video>
-      <div class="div-organge-line"></div>
-      <p><strong>Flight Deck</strong></p>
-      <p id="annotation">Designed for the D328eco™, the Companion™ integrated flight deck based on the Garmin G5000® avionics suite allows superior situational awareness, reduces pilot work and increases efficiency. This revolutionary, brand-new flight deck also significantly reduces maintenance costs and improves reliability.</p>
+      <!-- CABIN -->
+      <div id="cabin" style="display: none">
+        <video
+          type="video/mp4"
+          src="video/CABIN.mp4"
+          width="100%"
+          height="240"
+          autoplay
+          muted
+          loop
+        ></video>
+        <div class="div-organge-line"></div>
+        <p><strong>Cabin</strong></p>
+        <p id="annotation">
+          The airframe of the D328eco™ is nearly two metres longer than the
+          original D328® which increases the seating capacity to 40 passengers
+          as a standard configuration and enhances the proven multi-role
+          capability of the aircraft. Quiet and fully customisable, the
+          future-driven cabin design offers ample space for passengers, large
+          overhead bins for storage and is equipped with a galley for hot and
+          cold service.
+        </p>
+      </div>
+
+      <!-- LANDING GEAR -->
+      <div id="land" style="display: none">
+        <video
+          type="video/mp4"
+          src="video/LANDING GEAR.mp4"
+          width="100%"
+          height="240"
+          autoplay
+          muted
+          loop
+        ></video>
+        <div class="div-organge-line"></div>
+        <p><strong>Landing Gear</strong></p>
+        <p id="annotation">
+          Building on the superior field performance of the D328®, the new
+          landing gear from HEGGEMANN AG coupled with a gravel kit allows the
+          D328eco™ to access unpaved runways, allowing unbeatable operational
+          flexibility.
+        </p>
+      </div>
+
+      <!-- PROP  -->
+      <div id="prop" style="display: none">
+        <video
+          type="video/mp4"
+          src="video/PROPELLER.mp4"
+          width="100%"
+          height="240"
+          autoplay
+          muted
+          loop
+        ></video>
+        <div class="div-organge-line"></div>
+        <p><strong>Propellers</strong></p>
+        <p id="annotation">
+          Optimised for higher propulsive efficiency and low noise, the new
+          Collins Aerospace 568F-3 propellers work with the engine to ensure the
+          D328eco™ remains one of the most economical turboprops in the regional
+          and special mission markets.
+        </p>
+      </div>
+
+      <!-- ENGINE -->
+      <div id="engine" style="display: none">
+        <video
+          type="video/mp4"
+          src="video/ENGINE.mp4"
+          width="100%"
+          height="240"
+          autoplay
+          muted
+          loop
+        ></video>
+        <div class="div-organge-line"></div>
+        <p><strong>Engine</strong></p>
+        <p id="annotation">
+          Customised for the D328eco™, the PW127XT-S engine from Pratt and
+          Whitney Canada is the most efficient, cost-effective and modern
+          turboprop engine available today. With its enhanced shaft horsepower
+          to support the increased maximum take-off weight, the PW127XT-S engine
+          will extend time-on-wing while reducing emissions, operating costs and
+          maintenance costs.
+        </p>
+      </div>
+
+      <!-- SAF -->
+      <div id="saf" style="display: none">
+        <video
+          type="video/mp4"
+          src="video/SAF.mp4"
+          width="100%"
+          height="240"
+          autoplay
+          muted
+          loop
+        ></video>
+        <div class="div-organge-line"></div>
+        <p><strong>SAF</strong></p>
+        <p id="annotation">
+          Leveraging the efficiency of its turboprop engine, airframe and
+          aircraft systems, the D328eco™ is 100% compatible with the most
+          advanced Sustainable Aviation Fuels (SAF). The focus on
+          Power-to-Liquids (PtL) will bring down CO₂ emissions to near zero and
+          significantly reduce non-CO₂ effects through cleaner combustion.
+        </p>
+      </div>
+
+      <!-- AIR FRAME -->
+      <div id="frame" style="display: none">
+        <video
+          type="video/mp4"
+          src="video/AIRFRAME.mp4"
+          width="100%"
+          height="240"
+          autoplay
+          muted
+          loop
+        ></video>
+        <div class="div-organge-line"></div>
+        <p><strong>Airframe</strong></p>
+        <p id="annotation">
+          The benchmark aerodynamic airframe platform has a service ceiling of
+          30,000ft which enables altitude and speed performance for optimised
+          flight routing. The flexible layout of the interior and high wing
+          configuration facilitates multi-role mission capabilities.
+        </p>
+      </div>
     </div>
+    <canvas id="number" width="64" height="64"></canvas>
 
-    <!-- CABIN -->
-    <div id="cabin" style="display: none;">
-      <video type ='video/mp4' src="video/CABIN.mp4" width="100%" height="240" autoplay muted loop></video>
-      <div class="div-organge-line"></div>
-      <p><strong>Cabin</strong></p>
-      <p id="annotation">The airframe of the D328eco™ is nearly two metres longer than the original D328® which increases the seating capacity to 40 passengers as a standard configuration and enhances the proven multi-role capability of the aircraft. Quiet and fully customisable, the future-driven cabin design offers ample space for passengers, large overhead bins for storage and is equipped with a galley for hot and cold service.</p>
-    </div>
+    <div id="scene-container"></div>
 
-    <!-- LANDING GEAR -->
-    <div id="land" style="display: none;">
-      <video type ='video/mp4' src="video/LANDING GEAR.mp4" width="100%" height="240" autoplay muted loop></video>
-      <div class="div-organge-line"></div>
-      <p><strong>Landing Gear</strong></p>
-      <p id="annotation">Building on the superior field performance of the D328®, the new landing gear from HEGGEMANN AG coupled with a gravel kit allows the D328eco™ to access unpaved runways, allowing unbeatable operational flexibility.
-</p>
-    </div>
+    <script></script>
+  </body>
+  <script id="vertex-shader" type="x-shader/x-vertex">
+    varying vec2 vUv;
 
-    <!-- PROP  -->
-    <div id="prop" style="display: none;">
-      <video type ='video/mp4' src="video/PROPELLER.mp4" width="100%" height="240" autoplay muted loop></video>
-      <div class="div-organge-line"></div>
-      <p><strong>Propellers</strong></p>
-      <p id="annotation">Optimised for higher propulsive efficiency and low noise, the new Collins Aerospace 568F-3 propellers work with the engine to ensure the D328eco™ remains one of the most economical turboprops in the regional and special mission markets.</p>
-    </div>
+    uniform sampler2D getTexture1;
 
-    <!-- ENGINE -->
-    <div id="engine" style="display: none;">
-      <video type ='video/mp4' src="video/ENGINE.mp4" width="100%" height="240" autoplay muted loop></video>
-      <div class="div-organge-line"></div>
-      <p><strong>Engine</strong></p>
-      <p id="annotation">Customised for the D328eco™, the PW127XT-S engine from Pratt and Whitney Canada is the most efficient, cost-effective and modern turboprop engine available today. With its enhanced shaft horsepower to support the increased maximum take-off weight, the PW127XT-S engine will extend time-on-wing while reducing emissions, operating costs and maintenance costs.
-     </p>
-    </div>
+    void main() {
+        vUv = uv;
+        vec4 bumpData = texture2D( getTexture1, uv );
+        float displacement = 20.0 * bumpData.r * bumpData.a;
 
-    <!-- SAF -->
-    <div id="saf" style="display: none;">
-      <video type ='video/mp4' src="video/SAF.mp4" width="100%" height="240" autoplay muted loop></video>
-      <div class="div-organge-line"></div>
-      <p><strong>SAF</strong></p>
-      <p id="annotation">Leveraging the efficiency of its turboprop engine, airframe and aircraft systems, the D328eco™ is 100% compatible with the most advanced Sustainable Aviation Fuels (SAF). The focus on Power-to-Liquids (PtL) will bring down CO₂ emissions to near zero and significantly reduce non-CO₂ effects through cleaner combustion.</p>
-    </div>
+        vec3 newPosition = position + normal * displacement;
 
-    <!-- AIR FRAME -->
-    <div id="frame" style="display: none;">
-      <video type ='video/mp4' src="video/AIRFRAME.mp4" width="100%" height="240" autoplay muted loop></video>
-      <div class="div-organge-line"></div>
-      <p><strong>Airframe</strong></p>
-      <p id="annotation">The benchmark aerodynamic airframe platform has a service ceiling of 30,000ft which enables altitude and speed performance for optimised flight routing. The flexible layout of the interior and high wing configuration facilitates multi-role mission capabilities.</p>
-    </div>
-    
-  </div>
-  <canvas id="number" width="64" height="64"></canvas>
-
-
-  <div id="scene-container">
-   
-  </div>
-
-  <script>
+        gl_Position =  projectionMatrix * modelViewMatrix * vec4(newPosition,1.0);
+    }
   </script>
 
-  
-</body>
-<script id="vertex-shader" type="x-shader/x-vertex">
-  varying vec2 vUv;
+  <script id="fragment-shader" type="x-shader/x-fragment">
+    vec3 rgb(float r, float g, float b) {
+        return vec3(r / 255., g / 255., b / 255.);
+    }
 
-  uniform sampler2D getTexture1;
+    vec3 rgb(float c) {
+        return vec3(c / 255., c / 255., c / 255.);
+    }
 
-  void main() {
-      vUv = uv;
-      vec4 bumpData = texture2D( getTexture1, uv );
-      float displacement = 20.0 * bumpData.r * bumpData.a;
+    varying vec2 vUv;
 
-      vec3 newPosition = position + normal * displacement;
+    uniform sampler2D getTexture1;
+    uniform vec3 u_color1;
+    uniform vec3 u_color2;
+    uniform vec3 u_time;
 
-      gl_Position =  projectionMatrix * modelViewMatrix * vec4(newPosition,1.0);
-  }
-</script>
+    void main(void) {
 
-<script id="fragment-shader" type="x-shader/x-fragment">
-  vec3 rgb(float r, float g, float b) {
-      return vec3(r / 255., g / 255., b / 255.);
-  }
+        vec3 c1 = rgb(u_color1.r, u_color1.g, u_color1.b);
+        vec3 c2 = rgb(u_color2.r, u_color2.g, u_color2.b);
 
-  vec3 rgb(float c) {
-      return vec3(c / 255., c / 255., c / 255.);
-  }
-
-  varying vec2 vUv;
-
-  uniform sampler2D getTexture1;
-  uniform vec3 u_color1;
-  uniform vec3 u_color2;
-  uniform vec3 u_time;
-
-  void main(void) {
-
-      vec3 c1 = rgb(u_color1.r, u_color1.g, u_color1.b);
-      vec3 c2 = rgb(u_color2.r, u_color2.g, u_color2.b);
-
-      vec4 bumpData = texture2D(getTexture1, vUv);
-      if(bumpData.a < 0.05) {
-          gl_FragColor = vec4(c2, 0.5);
-      } else {
-          gl_FragColor = ( (bumpData.a)  * (1. - bumpData.r) ) * vec4(c1, 1.) * 0.65;
-      }
-  }
-</script> 
-<script id="atmosphere-shader" type="x-shader/x-fragment">
-  varying vec3 vertexNormal;
-  void main() {
-    float intensity = pow(0.6 - dot(vertexNormal, vec3(0,0,1.0)), 2.0);
-    gl_FragColor = vec4(0.3, 0.6, 1.0, 1.0) * intensity
-  }
-</script>
+        vec4 bumpData = texture2D(getTexture1, vUv);
+        if(bumpData.a < 0.05) {
+            gl_FragColor = vec4(c2, 0.5);
+        } else {
+            gl_FragColor = ( (bumpData.a)  * (1. - bumpData.r) ) * vec4(c1, 1.) * 0.65;
+        }
+    }
+  </script>
+  <script id="atmosphere-shader" type="x-shader/x-fragment">
+    varying vec3 vertexNormal;
+    void main() {
+      float intensity = pow(0.6 - dot(vertexNormal, vec3(0,0,1.0)), 2.0);
+      gl_FragColor = vec4(0.3, 0.6, 1.0, 1.0) * intensity
+    }
+  </script>
 </html>
